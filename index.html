@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luiz&Maria💗</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            background-color:white;
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+        }
+        #conteudo {
+            display: none;
+            margin-top: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 300px;
+            margin: auto;
+        }
+        .slide {
+            display: none;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        h2 {
+            margin-top: 10px;
+            color: #d81b60;
+        }
+        p {
+            color: #333;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Luiz&Maria💗</h1>
+    <button onclick="mostrarConteudo()">💗</button>
+
+    <div id="conteudo">
+        <div class="slideshow-container">
+            <img class="slide" src="C:\Users\55859\Downloads\WhatsApp Image 2025-03-06 at 17.51.23.jpeg" alt="Foto 1">
+            <img class="slide" src="C:\Users\55859\Downloads\WhatsApp Image 2025-03-06 at 17.51.22 (2).jpeg" alt="Foto 2">
+            <img class="slide" src="C:\Users\55859\Downloads\WhatsApp Image 2025-03-06 at 17.51.22 (1).jpeg" alt="Foto 3">
+        </div>
+        <h2>Estamos juntos há <span id="tempo"></span>!</h2>
+        <p>Oi princesa, quero te dizer que te amo muito!
+ você é a pessoa mais especial e linda da minha vida, obrigado pela sua companhia e seu carinho, te amo infinitamente meu amor 💗</p>
+    </div>
+
+    <script>
+        function calcularTempo() {
+            let dataInicio = new Date("2023-07-06T00:00:00"); // Data do relacionamento
+            let agora = new Date();
+
+            let anos = agora.getFullYear() - dataInicio.getFullYear();
+            let meses = agora.getMonth() - dataInicio.getMonth();
+            let dias = agora.getDate() - dataInicio.getDate();
+            let horas = agora.getHours() - dataInicio.getHours();
+            let minutos = agora.getMinutes() - dataInicio.getMinutes();
+            let segundos = agora.getSeconds() - dataInicio.getSeconds();
+
+            // Ajuste dos valores para evitar números negativos
+            if (segundos < 0) {
+                segundos += 60;
+                minutos--;
+            }
+            if (minutos < 0) {
+                minutos += 60;
+                horas--;
+            }
+            if (horas < 0) {
+                horas += 24;
+                dias--;
+            }
+            if (dias < 0) {
+                let ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+                dias += ultimoMes;
+                meses--;
+            }
+            if (meses < 0) {
+                meses += 12;
+                anos--;
+            }
+
+            document.getElementById("tempo").innerText = 
+                `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        }
+
+        function mostrarConteudo() {
+            document.getElementById("conteudo").style.display = "block";
+            iniciarSlideshow();
+            atualizarTempo();
+            setInterval(atualizarTempo, 1000); // Atualiza a cada segundo
+        }
+
+        function atualizarTempo() {
+            calcularTempo();
+        }
+
+        function iniciarSlideshow() {
+            let slides = document.getElementsByClassName("slide");
+            let indice = 0;
+            slides[indice].style.display = "block";
+
+            setInterval(() => {
+                slides[indice].style.display = "none";
+                indice = (indice + 1) % slides.length;
+                slides[indice].style.display = "block";
+            }, 3000); // Troca a foto a cada 3 segundos
+        }
+    </script>
+
+</body>
+</html>
